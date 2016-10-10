@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection"/>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script src="materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
+    <script type="text/javascript" src="js/repairman.js"></script>
+    <title>Калькулятор</title>
+</head>
+<body style="display: flex; min-height: 100vh; flex-direction: column;">
+<div class="navbar-fixed">
+    <nav class="light-blue darken-3" role="navigation">
+        <div class="nav-wrapper container">
+            <a href='index.html' id="logo-container" class="brand-logo white-text">ИУ5</a>
+            <a href='repairman.html' class="white-text right">Модель ремонтника</a>
+            <a href="analiticmodel.html" style="padding-right: 2rem" class="white-text right">Аналитическое моделирование</a>
+        </div>
+    </nav>
+</div>
+<main class="container" style="flex: 1 0 auto;">
+    <h1 style="font-size: large">Модель ремонтника</h1>
+
+    <!-- Ввод данных -->
+
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="t_no" type="number" class="validate">
+                <label for="t_no">Среднее время наработки на отказ, t_no</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input id="t_o" type="number" class="validate">
+                <label for="t_o">Среднее время ремонта, t_o</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="N" type="number" class="validate">
+                <label for="N">Число компьютеров, N</label>
+
+            </div>
+            <div class="input-field col s6">
+                <input id="C" type="number" class="validate">
+                <label for="C">Число ремонтников максимальное, C</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="S" type="number" class="validate">
+                <label for="S">Финансовые потери из-за простоя 1 ПК, S руб./ч.</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input id="S1" type="number" class="validate">
+                <label for="S1">З.п. 1 ремонтника, S1 руб./ч.</label>
+            </div>
+        </div>
+
+    </form>
+    <!--Расчет -->
+    <div class="col s12">
+        <a class="btn" style="width:100%;" onclick="Main()">Расчитать</a>
+    </div>
+    <!--Результаты расчета -->
+    <div class="col s12">
+        <table id="result" class="responsive-table" ></table>
+        <div id="chart_div"></div>
+    </div>
+
+</main>
+<footer class="page-footer light-blue darken-3 darken-1">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Калькулятор</h5>
+
+                <p class="grey-text text-lighten-4">Набор средств для специфических вычислений</p>
+
+
+            </div>
+            <div class="col l3 s12">
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Выполнила в рамках курса "Аналитические модели СОИ" <a class="brown-text text-lighten-3"> Паничкина Анна</a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
