@@ -3,11 +3,13 @@ var K1 = 0.995;
 var delta = 0.05;
 var K2 = 100;
 var variables_name = [];
+var Precision = 3;
 //Helper
-
+function step(p) {
+    return 1/Math.pow(10, p);
+}
 function format(x){
-    var precision = 5;
-    var base = Math.pow(10, precision);
+    var base = Math.pow(10, Precision);
     return Math.round(x * base) / base
 }
 
@@ -96,14 +98,17 @@ function inputDataForm(n, field_name) {
         return "<td class='header'>" + data + "</td>"
     }
     function cellWrapperId(id) {
-        return "<td><input  type='number' step='any' class='validate' id='" + id + "' > </td>"
+        return '<td><input  type="number"  step= "'+step(Precision)+'" class="validate stepable" id="' + id + '" > </td>'
     }
-    var button = '<a class="btn" style="width:100%;" onclick="Main()">Расчитать</a>';
+    var button = '<a class="btn" id="calculate" style="width:100%;" onclick="GetOptions();Main();">Расчитать</a>';
     $("#table_body").remove();
     $("#table_head").remove();
     $("#inputForm").append(thead);
     $("#inputForm").append(tbody);
+    $("#calculate").remove();
     $("#main").append(button);
+    $("#table_body_out").remove();
+    $("#table_head_out").remove();
 }
 
 function analyticalModeling(N,T_o,T_p,t_k,C,t_pr,D,t_d,P) {
@@ -241,17 +246,23 @@ function outputResult(n, result_arr) {
 
 function GetOptions() {
     //Опции моделирования
-    var options_name = ["Exp", "K1", "delta", "K2"];
+    var options_name = ["Exp", "K1", "delta", "K2", "Precision"];
     var options = inputData(options_name);
-    Exp = options[options_name[0]];
-    K1 = options[options_name[1]];
-    delta = options[options_name[2]];
-    K2 = options[options_name[3]];
+    Exp = options[options_name[0]] || Exp;
+    K1 = options[options_name[1]] || K1;
+    delta = options[options_name[2]] || delta;
+    K2 = options[options_name[3]] || K2;
+    Precision = options[options_name[4]] || Precision;
 
     console.log(Exp);
+    console.log(Precision);
     console.log(K1);
     console.log(delta);
     console.log(K2);
+
+}
+function showInputForm() {
+    GetOptions();
     variables_name = ["N","T_o","T_p","t_k","C","t_pr","D","t_d","P"];
     inputDataForm(Exp, variables_name);
 }

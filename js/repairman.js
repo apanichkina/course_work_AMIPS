@@ -188,7 +188,7 @@ function outputResult(n, result_arr) {
         return "<td>" + data + "</td>"
     }
     function cellWrapperId(data, id) {
-        return "<td id='" + id + "' >" + data + "</td>"
+        return "<td id='" + id+ "' >" + data + "</td>"
     }
     $("#table_body").remove();
     $("#table_head").remove();

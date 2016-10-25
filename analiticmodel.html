@@ -8,6 +8,18 @@
     <script src="materialize/js/materialize.min.js"></script>
     <script type="text/javascript" src="js/loader.js"></script>
     <script type="text/javascript" src="js/analiticmodel.js"></script>
+    <script>
+        $(document).ready(function() {
+            var stepElement = $('#Precision');
+            stepElement.change(function() {
+                var stepable =  $('input.stepable');
+                for( var i=0; i<stepable.length; ++i) {
+                    stepable[i].step=step(stepElement.val());
+                }
+
+            });
+        });
+    </script>
     <title>Калькулятор</title>
 </head>
 <body style="display: flex; min-height: 100vh; flex-direction: column;">
@@ -27,21 +39,27 @@
     <div class="col s12">
         <div class="row">
             <div class="input-field col s6">
-                <input id="Exp" type="number" class="validate">
+                <input id="Precision" type="number" class="validate" value="3">
+                <label for="Precision">Количество знаков после запятой</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="Exp" type="number" class="validate" value="2">
                 <label for="Exp">Количество экспериментов, Exp</label>
             </div>
             <div class="input-field col s6">
-                <input id="K1" type="number" class="validate">
+                <input id="K1" type="number" max="0.9999995" min="0.9" step= "0.001" class="validate stepable" value="0.995">
                 <label for="K1">K1</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <input id="delta" type="number" class="validate">
+                <input id="delta" type="number" class="validate stepable" min="0.00001" max="0.500000" step= "0.001" value="0.0001">
                 <label for="delta">delta</label>
             </div>
             <div class="input-field col s6">
-                <input id="K2" type="number" class="validate">
+                <input id="K2" type="number" min="10" max="100000" step= "0.001" class="validate stepable" value="100">
                 <label for="K2">K2</label>
             </div>
         </div>
@@ -49,7 +67,7 @@
 
     <!--Расчет -->
     <div class="col s12">
-        <a class="btn" style="width:100%;" onclick="GetOptions()">Ввести данные</a>
+        <a class="btn" style="width:100%;" onclick="showInputForm()">Ввести данные</a>
     </div>
 
     <form class="col s12">
